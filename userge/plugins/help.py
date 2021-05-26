@@ -121,23 +121,23 @@ if userge.has_bot:
         await callback_query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons))
 
-    @userge.bot.on_callback_query(filters=filters.regex(pattern=r"back\((.+)\)"))
-    @check_owner
-    async def callback_back(callback_query: CallbackQuery):
-        cur_pos = str(callback_query.matches[0].group(1))
-        pos_list = cur_pos.split('|')
-        if len(pos_list) == 1:
-            await callback_query.answer("you are in main menu", show_alert=True)
-            return
-        if len(pos_list) == 2:
-            text = "🖥 **Userge Main Menu** 🖥"
-            buttons = main_menu_buttons()
-        elif len(pos_list) == 3:
-            text, buttons = category_data(cur_pos)
-        elif len(pos_list) == 4:
-            text, buttons = plugin_data(cur_pos)
-        await callback_query.edit_message_text(
-            text, reply_markup=InlineKeyboardMarkup(buttons))
+    #@userge.bot.on_callback_query(filters=filters.regex(pattern=r"back\((.+)\)"))
+#    @check_owner
+#    async def callback_back(callback_query: CallbackQuery):
+#        cur_pos = str(callback_query.matches[0].group(1))
+#        pos_list = cur_pos.split('|')
+#        if len(pos_list) == 1:
+#            await callback_query.answer("you are in main menu", show_alert=True)
+#            return
+#        if len(pos_list) == 2:
+#            text = "🖥 **Userge Main Menu** 🖥"
+#            buttons = main_menu_buttons()
+#        elif len(pos_list) == 3:
+#            text, buttons = category_data(cur_pos)
+#        elif len(pos_list) == 4:
+#            text, buttons = plugin_data(cur_pos)
+#        await callback_query.edit_message_text(
+#            text, reply_markup=InlineKeyboardMarkup(buttons))
 
     @userge.bot.on_callback_query(filters=filters.regex(pattern=r"enter\((.+)\)"))
     @check_owner
